@@ -1,7 +1,5 @@
 package domain;
 
-import domain.FirmaElectronica;
-import domain.Usuario;
 import interfacesExternas.GeneradorDeFirmas;
 
 public class Firmador {

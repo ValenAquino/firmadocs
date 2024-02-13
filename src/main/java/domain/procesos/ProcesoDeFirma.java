@@ -30,6 +30,8 @@ public abstract class ProcesoDeFirma {
 
   abstract public void notificarInicio();
 
+  abstract public void notificarPendientes();
+
   public void iniciar() {
     this.estado = EstadoDelProceso.INICIADO;
     this.notificarInicio();
@@ -93,12 +95,10 @@ public abstract class ProcesoDeFirma {
   }
 
   public void anular() {
-    if(this.estado == EstadoDelProceso.INICIADO) {
+    if (this.estado == EstadoDelProceso.INICIADO) {
       this.estado = EstadoDelProceso.ANULADO_POST_INICIO;
     } else {
       this.estado = EstadoDelProceso.ANULADO_SIN_INICIO;
     }
   }
-
-  abstract public void notificarPendientes();
 }

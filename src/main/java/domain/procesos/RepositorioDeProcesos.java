@@ -12,10 +12,6 @@ public class RepositorioDeProcesos {
     this.procesos = new ArrayList<>();
   }
 
-  public void agregarProceso(ProcesoDeFirma proceso) {
-    procesos.add(proceso);
-  }
-
   public List<ProcesoDeFirma> obtenerPorUsuario(Usuario usuario) {
     return procesos.stream().filter(proceso -> proceso.colaboradores().contains(usuario)).toList();
   }
@@ -27,6 +23,6 @@ public class RepositorioDeProcesos {
   public void notificarPendientes() {
     procesos.stream()
         .filter(p -> p.estado == EstadoDelProceso.INICIADO)
-        .forEach(p -> p.notificarPendientes());
+        .forEach(ProcesoDeFirma::notificarPendientes);
   }
 }
