@@ -16,8 +16,8 @@ public abstract class ProcesoDeFirma {
   Documento documento;
   public EstadoDelProceso estado;
   List<Solicitud> solicitudesPendientes;
-  List<Usuario> lectores;
-  List<FirmaElectronica> firmas;
+  public List<Usuario> lectores;
+  public List<FirmaElectronica> firmas;
 
   public ProcesoDeFirma(Usuario iniciador, Documento documento) {
     this.iniciador = iniciador;
@@ -87,4 +87,18 @@ public abstract class ProcesoDeFirma {
         "Un nuevo Colaborador firmó el documento"
     );
   }
+
+  public List<Usuario> colaboradores() {
+    return solicitudesPendientes.stream().map(Solicitud::getUsuario).toList();
+  }
+
+  public void anular() {
+    if(this.estado == EstadoDelProceso.INICIADO) {
+      this.estado = EstadoDelProceso.ANULADO_POST_INICIO;
+    } else {
+      this.estado = EstadoDelProceso.ANULADO_SIN_INICIO;
+    }
+  }
+
+  abstract public void notificarPendientes();
 }

@@ -19,4 +19,15 @@ public class ProcesoSinOrden extends ProcesoDeFirma {
 
     this.solicitudesPendientes.forEach(s -> s.getUsuario().notificar(mensaje));
   }
+
+  @Override
+  public void notificarPendientes() {
+    Mensaje mensaje = new Mensaje(
+        "Proceso de firma pendiente",
+        "El proceso de firma tiene solicitudes pendientes"
+    );
+
+    this.solicitudesPendientes.forEach(s -> s.getUsuario().notificar(mensaje));
+  }
+
 }

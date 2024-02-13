@@ -38,4 +38,14 @@ public class ProcesoEnOrden extends ProcesoDeFirma {
       notificarInicio();
     }
   }
+
+  @Override
+  public void notificarPendientes() {
+    Mensaje mensaje = new Mensaje(
+        "Proceso de firma pendiente",
+        "El proceso de firma tiene solicitudes pendientes"
+    );
+
+    solicitudesPendientes.get(0).getUsuario().notificar(mensaje);
+  }
 }
